@@ -2195,7 +2195,7 @@ fn shift(reader: *Reader) !void {
 
     if (reader.node == .element_end) {
         if (reader.options.namespace_aware) {
-            var prefix_bindings = reader.ns_prefixes.pop();
+            var prefix_bindings = reader.ns_prefixes.pop() orelse unreachable;
             prefix_bindings.deinit(reader.gpa);
         }
         const element_name_start = reader.element_names.pop();
