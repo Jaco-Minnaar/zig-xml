@@ -2198,7 +2198,7 @@ fn shift(reader: *Reader) !void {
             var prefix_bindings = reader.ns_prefixes.pop() orelse unreachable;
             prefix_bindings.deinit(reader.gpa);
         }
-        const element_name_start = reader.element_names.pop();
+        const element_name_start = reader.element_names.pop() orelse unreachable;
         reader.strings.shrinkRetainingCapacity(@intFromEnum(element_name_start));
     }
 }
